@@ -2,12 +2,12 @@
 @section('css')
 @toastr_css
 @section('title')
-{{ __('university.show_fac') }}
+{{ __('university.classroom') }}
 @stop
 @endsection
 @section('page-header')
 @section('PageTitle')
-{{ __('university.show_fac') }}
+{{ __('university.classroom') }}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -32,7 +32,7 @@
                 </div>
             @endif
             <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
-                {{ __('university.add_fac')}}
+                {{ __('university.add_classroom')}}
             </button>
             <br><br>
 
@@ -42,27 +42,35 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>{{ __('facultie.name') }}</th>
-                            <th>note</th>
-                            <th>Processes</th>
+                            <th>{{ __('classroom.name') }}</th>
+                            <th>{{ __('classroom.name_facultie') }}</th>
+                            <th>{{ __('classroom.Processes') }}</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @if (isset($details))
+
+                        <?php $classrooms = $details; ?>
+                    @else
+
+                        <?php $classrooms = $classrooms; ?>
+                    @endif
                         <?php $i = 0; ?>
-                        @foreach ($faculties as $facultie)
+                        @foreach ($classrooms as $classroom)
 
 
                             <tr>
                                 <?php $i++; ?>
                                 <td>{{ $i }}</td>
-                                <td>{{$facultie->name  }}</td>
-                                <td>{{ $facultie->note }}</td>
+                                <td>{{$classroom->name  }}</td>
+                                <td>{{ $classroom->faculties->name }}</td>
+
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                        data-target="#edit{{ $facultie->id }}"
+                                        data-target="#edit{{ $classroom->id }}"
                                         title="edit"><i class="fa fa-edit"></i></button>
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#delete{{ $facultie->id }}"
+                                        data-target="#delete{{ $classroom->id }}"
                                         title="Delete"><i
                                             class="fa fa-trash"></i></button>
                                 </td>
@@ -70,14 +78,14 @@
 
 
                             <!-- edit_modal_Grade -->
-                            <div class="modal fade" id="edit{{ $facultie->id }}" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="edit{{ $classroom->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
                                                 id="exampleModalLabel">
-                                                Edit facultie
+                                                Edit classrooms
                                             </h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
@@ -86,38 +94,41 @@
                                         </div>
                                         <div class="modal-body">
                                             <!-- add_form -->
-                                            <form action="{{ route('facultie.update',$facultie->id) }}" method="post">
-                                                {{ method_field('patch') }}
+                                            <form action="{{ route('classroom.update',$classroom->id) }}" method="post">
+                                            @method('patch')
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col">
-                                                        <label for="Name"
-                                                            class="mr-sm-2">Name
+                                                        <label for="name" class="mr-sm-2">Name
                                                             :</label>
-                                                        <input id="name" type="text" name="name"
-                                                            class="form-control"
-                                                            value="{{ $facultie->getTranslation('name', 'ar') }}"
-                                                            required>
-                                                        <input id="id" type="hidden" name="id" class="form-control"
-                                                            value="{{ $facultie->id }}">
+                                                        <input id="name" type="text" name="name" class="form-control"
+                                                         value="{{ $classroom->getTranslation('name', 'ar') }}">
                                                     </div>
                                                     <div class="col">
-                                                        <label for="Name_en"
-                                                            class="mr-sm-2">Name_En
+                                                        <label for="name" class="mr-sm-2">Name_en
                                                             :</label>
-                                                        <input type="text" class="form-control"
-                                                            value="{{ $facultie->getTranslation('name', 'en') }}"
-                                                            name="name_en" required>
+                                                        <input id="name" type="text" name="name_en" class="form-control "
+                                                         value="{{ $classroom->getTranslation('name', 'en') }}">
+                                                        <input  type="hidden" name="id" value="{{ $classroom->id}}">
                                                     </div>
+
                                                 </div>
-                                                <div class="form-group">
-                                                    <label
-                                                        for="exampleFormControlTextarea1">Notes
+                                                <div class="col">
+                                                    <label for="Name_en"
+                                                        class="mr-sm-2">{{ __('facultie.name_facultie') }}
                                                         :</label>
-                                                    <textarea class="form-control" name="note"
-                                                        id="exampleFormControlTextarea1"
-                                                        rows="3">{{ $facultie->Notes }}</textarea>
-                                                </div>
+
+                                                    <div class="box">
+                                                        <select name="facultie_id" class="fancyselect">
+                                                            <option value="{{ $classroom->faculties->id }}">
+                                                                {{ $classroom->faculties->name }}</option>
+                                                                @foreach ($faculties as $facultie )
+                                                                    <option value="{{ $facultie->id }}">
+                                                                        {{ $facultie->name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
+
                                                 <br><br>
 
                                                 <div class="modal-footer">
@@ -133,7 +144,7 @@
                                 </div>
                             </div>
 
-                            <div class="modal fade" id="delete{{ $facultie->id }}" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="delete{{ $classroom->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -148,32 +159,29 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <!-- add_form -->
-                                            <form action="{{ route('facultie.destroy',$facultie->id) }}" method="post">
-                                                {{ method_field('Delete') }}
-                                                @csrf
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <label for="Name"
-                                                            class="mr-sm-2">Name
-                                                            :</label>
-                                                        <input id="id" type="hidden" name="id"
-                                                            class="form-control"
-                                                            value="{{ $facultie->id}}"
-                                                        >
+                                            <!-- Delete_form -->
+                                            <form action="{{ route('classroom.destroy', $classroom->id) }}"
+                                            method="post">
+                                          @method('Delete')
+                                          @csrf
+                                          Delete
+                                          <input id="id" type="hidden" name="id" class="form-control"
+                                                 value="{{ $classroom->id }}">
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary"
+                                                      data-dismiss="modal">Close</button>
+                                              <button type="submit"
+                                                      class="btn btn-danger">submit</button>
+                                          </div>
+                                      </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                                    </div>
-
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close</button>
-                                                    <button type="submit"
-                                                        class="btn btn-success">Submit</button>
-                                                </div>
-                                            </form>
                         @endforeach
                     </table>
+
             </div>
         </div>
     </div>
@@ -184,7 +192,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
-                    {{ __('university.add_fac')}}
+                    {{ __('university.add_classroom')}}
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -192,7 +200,7 @@
             </div>
             <div class="modal-body">
                 <!-- add_form -->
-                <form action="{{ route('facultie.store') }}" method="POST">
+                <form action="{{ route('classroom.store') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col">
@@ -204,15 +212,25 @@
                             <label for="name" class="mr-sm-2">Name_en
                                 :</label>
                             <input id="name" type="text" name="name_en" class="form-control">
+                            <input  type="hidden" name="facultie_id" >
                         </div>
+
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Note
+                    <div class="col">
+                        <label for="Name_en"
+                            class="mr-sm-2">{{ __('facultie.name_facultie') }}
                             :</label>
-                        <textarea class="form-control" name="note" id="exampleFormControlTextarea1"
-                            rows="3"></textarea>
-                    </div>
+
+                        <div class="box">
+                            <select class="fancyselect" name="facultie_id">
+                                @foreach ($faculties as $facultie)
+                                    <option value="{{ $facultie->id }}">{{$facultie->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                     <br><br>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"
@@ -228,5 +246,27 @@
 <!-- row closed -->
 @endsection
 @section('js')
+{{-- @toastr_js --}}
+{{-- @toastr_render --}}
+
+<script type="text/javascript">
+    $(function() {
+        $("#btn_delete_all").click(function() {
+            var selected = new Array();
+            $("#datatable input[type=checkbox]:checked").each(function() {
+                selected.push(this.value);
+            });
+
+            if (selected.length > 0) {
+                $('#delete_all').modal('show')
+                $('input[id="delete_all_id"]').val(selected);
+            }
+        });
+    });
+
+</script>
+
+
+
 
 @endsection

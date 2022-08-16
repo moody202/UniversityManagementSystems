@@ -2,27 +2,23 @@
 
 namespace App\Models;
 
-use App\Models\Section;
+use App\Models\Facultie;
 use App\Models\Classroom;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Facultie extends Model
+class Section extends Model
 {
     use HasFactory;
     use HasTranslations;
     public $translatable = ['name'];
-
-    protected $fillable=[
-        'name','note'
-    ];
+    protected $fillable = ['name','status','facultie_id','classroom_id'];
 
     public function classrooms(){
-        return $this->hasMany(Classroom::class, 'facultie_id');
-
+        return $this->belongsTo(Classroom::class,'classroom_id');
     }
-    public function sections(){
-        return $this->hasMany(Section::class, 'facultie_id' );
+    public function faculties(){
+        return $this->belongsTo(Facultie::class,'facultie_id');
     }
 }

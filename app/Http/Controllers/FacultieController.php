@@ -38,8 +38,8 @@ class FacultieController extends Controller
     public function store(Request $request)
     {
         try{
-            Facultie::created([
-                'name' => $request->name,
+            Facultie::create([
+                'name' => ['en'=>$request->name_en , 'ar'=>$request->name],
                 'note'=>$request->note,
             ]);
             toastr()->success('add Name success');
@@ -82,7 +82,21 @@ class FacultieController extends Controller
      */
     public function update(Request $request, Facultie $facultie)
     {
-        //
+       try{
+        $facultie= Facultie::findOrFail($request->id);
+        $facultie->update([
+            $facultie->name=['en'=>$request->name_en, 'ar'=>$request->name],
+            $facultie->note=$request->note
+        ]);
+        toastr()->success('Updated Facultie successfully');
+        return redirect()->route('facultie.index');
+
+
+       }catch(\Exception $e){
+        return redirect()->back()->withErrors(['error'=>$e->getMessage()]);
+
+       }
+
     }
 
     /**
@@ -91,8 +105,11 @@ class FacultieController extends Controller
      * @param  \App\Models\Facultie  $facultie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Facultie $facultie)
+    public function destroy(Request $request, Facultie $facultie)
     {
-        //
+        $facultie= Facultie::findOrFail($request->id)->delete();
+        toastr()->success('Delete successfully');
+        return redirect()->route('facultie.index');
+
     }
 }

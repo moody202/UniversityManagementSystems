@@ -56,8 +56,8 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">Visitors</p>
-                                    <h4>65,650</h4>
+                                    <p class="card-text text-dark">عدد الكليات الموجودة</p>
+                                    <h4>{{ \App\Models\Facultie::count() }}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
@@ -73,12 +73,32 @@
                             <div class="clearfix">
                                 <div class="float-left">
                                     <span class="text-warning">
-                                        <i class="fa fa-shopping-cart highlight-icon" aria-hidden="true"></i>
+                                        <i class="fa fa-building fa-3x"></i>
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">Orders</p>
-                                    <h4>656</h4>
+                                    <p class="card-text text-dark">{{ __('classroom.class') }}</p>
+                                    <h4>{{ \App\Models\Classroom::count() }}</h4>
+                                </div>
+                            </div>
+                            <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i> Total sales
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                    <div class="card card-statistics h-100">
+                        <div class="card-body">
+                            <div class="clearfix">
+                                <div class="float-left">
+                                    <span class="text-warning">
+                                        <i class="fa fa-building fa-3x"></i>
+                                    </span>
+                                </div>
+                                <div class="float-right text-right">
+                                    <p class="card-text text-dark">{{ __('section.section') }}</p>
+                                    <h4>{{ \App\Models\Section::count() }}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
@@ -93,12 +113,12 @@
                             <div class="clearfix">
                                 <div class="float-left">
                                     <span class="text-success">
-                                        <i class="fa fa-dollar highlight-icon" aria-hidden="true"></i>
+                                        <i class="fa fa-thin fa-users fa-4x"></i>
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">Revenue</p>
-                                    <h4>$65656</h4>
+                                    <p class="card-text text-dark">الطلاب</p>
+                                    <h4>10000</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
@@ -113,11 +133,11 @@
                             <div class="clearfix">
                                 <div class="float-left">
                                     <span class="text-primary">
-                                        <i class="fa fa-twitter highlight-icon" aria-hidden="true"></i>
+                                        <i class="fa fa-thin fa-users fa-4x"></i>
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">Followers</p>
+                                    <p class="card-text text-dark">دكتور</p>
                                     <h4>62,500+</h4>
                                 </div>
                             </div>

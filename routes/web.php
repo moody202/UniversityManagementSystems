@@ -2,7 +2,9 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\FacultieController;
+use App\Http\Controllers\ClassroomController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -36,6 +38,9 @@ Route::group(
         })->middleware(['auth'])->name('dashboard');
 
         Route::resource('/facultie',FacultieController::class);
+        Route::resource('/classroom',ClassroomController::class);
+        Route::resource('/sections',SectionController::class);
+        Route::get('/classes/{id}', [SectionController::class,'getclasses']);
 });
 
 require __DIR__.'/auth.php';
