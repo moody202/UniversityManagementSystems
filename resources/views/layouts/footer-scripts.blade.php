@@ -27,7 +27,7 @@
 <!-- custom -->
 <script src="{{ URL::asset('assets/js/custom.js') }}"></script>
 <script src="{{ URL('https://use.fontawesome.com/c2df8da394.js') }}"></script>
-
+@livewireScripts
 <script>
     $(document).ready(function() {
         $('#datatable').DataTable();
@@ -44,6 +44,23 @@
 @endif
 
 
+<script>
+    function CheckAll(name, elem) {
+        var elements = document.getElementsname(name);
+        var l = elements.length;
+
+        if (elem.checked) {
+            for (var i = 0; i < l; i++) {
+                elements[i].checked = true;
+            }
+        } else {
+            for (var i = 0; i < l; i++) {
+                elements[i].checked = false;
+            }
+        }
+    }
+</script>
+
 
 <script>
     $(document).ready(function () {
@@ -56,7 +73,7 @@
                     dataType: "json",
                     success: function (data) {
                         $('select[name="classroom_id"]').empty();
-                        $('select[name="classroom_id"]').append('<option selected disabled >{{trans('Parent_trans.Choose')}}...</option>');
+                        $('select[name="classroom_id"]').append('<option selected disabled >اختر المرحلة...</option>');
                         $.each(data, function (key, value) {
                             $('select[name="classroom_id"]').append('<option value="' + key + '">' + value + '</option>');
                         });
@@ -80,7 +97,7 @@
             var classroom_id = $(this).val();
             if (classroom_id) {
                 $.ajax({
-                    url: "{{ URL::to('Get_sections') }}/" + classroom_id,
+                    url: "{{ URL::to('Get_Sections') }}/" + classroom_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
@@ -111,7 +128,7 @@
                     dataType: "json",
                     success: function (data) {
                         $('select[name="classroom_id_new"]').empty();
-                        $('select[name="classroom_id_new"]').append('<option selected disabled >{{trans('Parent_trans.Choose')}}...</option>');
+                        $('select[name="classroom_id_new"]').append('<option selected disabled >اختر المرحلة الدراسية...</option>');
                         $.each(data, function (key, value) {
                             $('select[name="classroom_id_new"]').append('<option value="' + key + '">' + value + '</option>');
                         });
@@ -134,7 +151,7 @@
             var classroom_id = $(this).val();
             if (classroom_id) {
                 $.ajax({
-                    url: "{{ URL::to('Get_sections') }}/" + classroom_id,
+                    url: "{{ URL::to('Get_Sections') }}/" + classroom_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {

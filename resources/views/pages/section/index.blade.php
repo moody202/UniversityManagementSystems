@@ -122,7 +122,7 @@ aria-hidden="true">&times;</span>
 
 <form action="{{ route('sections.update',$list_Sections->id) }}" method="POST">
 {{ method_field('patch') }}
-{{ csrf_field() }}
+    @csrf
 <div class="row">
 <div class="col">
 <input type="text"
@@ -169,12 +169,9 @@ value="{{ $list_facultie->id }}">
 <br>
 
 <div class="col">
-<label for="inputName"
-class="control-label">Classroom</label>
-<select name="classroom_id"
-class="custom-select">
-<option
-value="{{ $list_Sections->classrooms->id }}">
+<label for="inputName" class="control-label">Classroom</label>
+<select name="classroom_id" class="custom-select">
+<option value="{{ $list_Sections->classrooms->id }}">
 {{ $list_Sections->classrooms->name }}
 </option>
 </select>
@@ -185,18 +182,9 @@ value="{{ $list_Sections->classrooms->id }}">
 <div class="form-check">
 
 @if ($list_Sections->status === 1)
-<input
-type="checkbox"
-checked
-class="form-check-input"
-name="status"
-id="exampleCheck1">
+<input type="checkbox" checked class="form-check-input" name="status" id="exampleCheck1">
 @else
-<input
-type="checkbox"
-class="form-check-input"
-name="status"
-id="exampleCheck1">
+<input type="checkbox" class="form-check-input" name="status" id="exampleCheck1">
 @endif
 <label
 class="form-check-label"
@@ -220,11 +208,8 @@ for="exampleCheck1">Status</label><br>
 
 </div>
 <div class="modal-footer">
-<button type="button"
-class="btn btn-secondary"
-data-dismiss="modal">Close</button>
-<button type="submit"
-class="btn btn-danger">Submit</button>
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="submit" class="btn btn-danger">Submit</button>
 </div>
 </form>
 </div>
@@ -233,41 +218,27 @@ class="btn btn-danger">Submit</button>
 
 
 <!-- delete_modal_Grade -->
-<div class="modal fade"
-id="delete{{ $list_Sections->id }}"
-tabindex="-1" role="dialog"
-aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="delete{{ $list_Sections->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<h5 style="font-family: 'Cairo', sans-serif;"
-class="modal-title"
-id="exampleModalLabel">
+<h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
 Delete
 </h5>
-<button type="button" class="close"
-data-dismiss="modal"
-aria-label="Close">
-<span
-aria-hidden="true">&times;</span>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
 </button>
 </div>
 <div class="modal-body">
 <form action="{{ route('sections.destroy',$list_Sections->id) }}" method="post">
-{{ method_field('Delete') }}
+@method('Delete')
 @csrf
 delete
-<input id="id" type="hidden"
-name="id"
-class="form-control"
-value="{{ $list_Sections->id }}">
+<input id="id" type="hidden" name="id" class="form-control" value="{{ $list_Sections->id }}">
 <div class="modal-footer">
-<button type="button"
-class="btn btn-secondary"
-data-dismiss="modal">Close</button>
-<button type="submit"
-class="btn btn-danger">Submit</button>
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="submit" class="btn btn-danger">Submit</button>
 </div>
 </form>
 </div>
@@ -309,7 +280,7 @@ id="exampleModalLabel">
 <div class="modal-body">
 
 <form action="{{ route('sections.store') }}" method="POST">
-{{ csrf_field() }}
+    @csrf
 <div class="row">
 <div class="col">
 <input type="text" name="name" class="form-control" placeholder="اسم القسم بالعربي"

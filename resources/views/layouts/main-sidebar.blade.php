@@ -40,24 +40,50 @@
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#classes-menu">
                         <div class="pull-left"><i class="fa fa-building"></i><span
-                                class="right-nav-text">Classrooms</span></div>
+                                class="right-nav-text">{{ __('classroom.class') }}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="classes-menu" class="collapse" data-parent="#sidebarnav">
-                        <li><a href="{{ route('classroom.index') }}">Classrooms</a></li>
+                        <li><a href="{{ route('classroom.index') }}">{{ __('classroom.class') }}</a></li>
                     </ul>
                 </li>
                 {{-- sections --}}
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections-menu">
                         <div class="pull-left"><i class="fa fa-building"></i><span
-                                class="right-nav-text">sections</span></div>
+                                class="right-nav-text">{{ __('section.section') }}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="sections-menu" class="collapse" data-parent="#sidebarnav">
-                        <li><a href="{{ route('sections.index') }}">sections</a></li>
+                        <li><a href="{{ route('sections.index') }}">{{ __('section.section') }}</a></li>
+                    </ul>
+                </li>
+                <!--my parent-->
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#Parents-menu">
+                        <div class="pull-left"><i class="fa fa-building"></i><span
+                                class="right-nav-text">{{ __('Parent_trans.add_parent') }}</span></div>
+                        <div class="pull-right"><i class="ti-plus"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="Parents-menu" class="collapse" data-parent="#sidebarnav">
+                        <li><a href="{{ url('my-parent') }}">{{ __('Parent_trans.add_parent') }}</a></li>
+                    </ul>
+                </li>
+
+                <!-- Doctor-->
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#Teachers-menu">
+                        <div class="pull-left"><i class="fa fa-building"></i><span
+                                class="right-nav-text">Doctor</span></div>
+                        <div class="pull-right"><i class="ti-plus"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="Teachers-menu" class="collapse" data-parent="#sidebarnav">
+                        <li><a href="{{ route('Dr.create') }}">Add Doctor</a></li>
+                        <li><a href="{{ route('Dr.index') }}">Show Doctor</a></li>
                     </ul>
                 </li>
 
@@ -71,24 +97,24 @@
                             <li>
                                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#Student_information">Student_information<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
                                 <ul id="Student_information" class="collapse">
-                                    <li> <a href="">add_student</a></li>
-                                    <li> <a href="">list_students</a></li>
+                                    <li> <a href="{{ route('student.create') }}">add_student</a></li>
+                                    <li> <a href="{{ route('student.index') }}">list_students</a></li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#Students_upgrade">Students_Promotions<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
                                 <ul id="Students_upgrade" class="collapse">
-                                    <li> <a href="">add_Promotion</a></li>
-                                    <li> <a href="">list_Promotions</a> </li>
+                                    <li> <a href="{{ route('promotion.create') }}">add_Promotion</a></li>
+                                    <li> <a href="{{ route('promotion.index') }}">list_Promotions</a> </li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#Graduate students">Graduate_students<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
                                 <ul id="Graduate students" class="collapse">
-                                    <li> <a href="">add_Graduate</a> </li>
-                                    <li> <a href="">list_Graduate</a> </li>
+                                    <li> <a href="{{ route('Graduateds.create') }}">add_Graduate</a> </li>
+                                    <li> <a href="{{ route('Graduateds.index') }}">list_Graduate</a> </li>
                                 </ul>
                             </li>
                         </ul>

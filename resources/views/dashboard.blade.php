@@ -56,13 +56,13 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">عدد الكليات الموجودة</p>
+                                    <p class="card-text text-dark">{{ __('dashboard.count') }}</p>
                                     <h4>{{ \App\Models\Facultie::count() }}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> 81% lower
-                                growth
+                                <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i>
+                                <a class="btn btn-primary" href="{{ url('facultie') }}">Show</a>
                             </p>
                         </div>
                     </div>
@@ -82,7 +82,8 @@
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i> Total sales
+                                <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i>
+                                <a class="btn btn-primary" href="{{ url('classroom') }}">Show</a>
                             </p>
                         </div>
                     </div>
@@ -102,7 +103,50 @@
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i> Total sales
+                                <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i>
+                                <a class="btn btn-primary" href="{{ url('sections') }}">Show</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                    <div class="card card-statistics h-100">
+                        <div class="card-body">
+                            <div class="clearfix">
+                                <div class="float-left">
+                                    <span class="text-warning">
+                                        <i class="fa fa-building fa-3x"></i>
+                                    </span>
+                                </div>
+                                <div class="float-right text-right">
+                                    <p class="card-text text-dark">{{ __('dashboard.countpar') }}</p>
+                                    <h4>{{ \App\Models\MyParent::count() }}</h4>
+                                </div>
+                            </div>
+                            <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i>
+                                <a class="btn btn-primary" href="{{ url('my-parent') }}">Show</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                    <div class="card card-statistics h-100">
+                        <div class="card-body">
+                            <div class="clearfix">
+                                <div class="float-left">
+                                    <span class="text-warning">
+                                        <i class="fa fa-thin fa-users fa-4x"></i>
+                                    </span>
+                                </div>
+                                <div class="float-right text-right">
+                                    <p class="card-text text-dark">{{ __('dashboard.countDr') }}</p>
+                                    <h4>{{ \App\Models\Doctor::count() }}</h4>
+                                </div>
+                            </div>
+                            <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i>
+                                <a class="btn btn-primary" href="{{ url('Dr') }}">Show</a>
                             </p>
                         </div>
                     </div>
@@ -118,11 +162,12 @@
                                 </div>
                                 <div class="float-right text-right">
                                     <p class="card-text text-dark">الطلاب</p>
-                                    <h4>10000</h4>
+                                    <h4>{{ \App\Models\Student::count() }}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <i class="fa fa-calendar mr-1" aria-hidden="true"></i> Sales Per Week
+                                <i class="fa fa-calendar mr-1" aria-hidden="true"></i>
+                                <a class="btn btn-primary" href="{{ url('student') }}">Show</a>
                             </p>
                         </div>
                     </div>

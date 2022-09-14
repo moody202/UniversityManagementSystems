@@ -18,8 +18,8 @@ class SectionController extends Controller
     {
         $faculties= Facultie::with(['sections'])->get();
         $list_faculties= Facultie::all();
-        $sections=Section::all();
-        return view('pages.section.index', compact('faculties', 'list_faculties', 'sections'));
+        // $sections=Section::all();
+        return view('pages.section.index', compact('faculties', 'list_faculties'));
     }
 
     /**

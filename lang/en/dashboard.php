@@ -1,5 +1,8 @@
 <?php
 
 return[
-    'name' =>'Dashboard'
+    'name' =>'Dashboard',
+    'count'=>'Faculties Count',
+    'countpar'=>'Parent Count',
+    'countDr'=>'Doctor Count'
 ];
